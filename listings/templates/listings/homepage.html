@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezidence Jevanská | Výjimečné bydlení u lesa</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; }
+        .swiper { width: 100%; height: 100vh; }
+        .swiper-slide img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transform: scale(1.1); transition: transform 10s linear;
+        }
+        .swiper-slide-active img { transform: scale(1); }
+        .overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
+        }
+        /* Mix-blend-mode pro navigaci, aby byla čitelná na světlém i tmavém */
+        .nav-logo { mix-blend-mode: difference; }
+    </style>
+</head>
+<body class="bg-white">
+
+<nav id="main-nav" class="fixed w-full z-[100] transition-all duration-500 px-6 md:px-12 py-8 text-white">
+    <div class="max-w-[1920px] mx-auto flex justify-between items-center">
+        
+        <div id="nav-logo" class="text-xl md:text-2xl font-light tracking-[0.3em] drop-shadow-md">
+            JEVANSKÁ
+        </div>
+
+        <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.2em] font-medium">
+            <a href="#o-projektu" class="hover:opacity-60 drop-shadow-md">O projektu</a>
+            <a href="#nabidka" class="hover:opacity-60 drop-shadow-md">Nabídka bytů</a>
+            <a href="#lokalita" class="hover:opacity-60 drop-shadow-md">Lokalita</a>
+            <a href="#kontakt" id="nav-button" class="border border-white/40 px-8 py-3 hover:bg-white hover:text-black transition-all drop-shadow-md">
+                Kontakt
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <header class="relative h-screen overflow-hidden">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide relative">
+                    <div class="absolute inset-0 overlay z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000" alt="Jevanská Příroda">
+                </div>
+                <div class="swiper-slide relative">
+                    <div class="absolute inset-0 overlay z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000" alt="Interiér">
+                </div>
+                <div class="swiper-slide relative">
+                    <div class="absolute inset-0 overlay z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000" alt="Architektura">
+                </div>
+            </div>
+            <div class="absolute inset-0 z-20 flex flex-col justify-end px-6 md:px-20 pb-20 pointer-events-none text-white">
+                <h1 class="text-5xl md:text-8xl font-extralight tracking-tighter leading-[0.9] mb-6">
+                    Místo, kde <br><span class="font-normal italic">příroda vypráví.</span>
+                </h1>
+                <p class="text-[10px] md:text-xs tracking-[0.4em] uppercase opacity-80">Luxusní rezidenční projekt v Jevanské ulici</p>
+            </div>
+            <div class="swiper-pagination !text-left !left-6 md:!left-20 !bottom-10"></div>
+        </div>
+    </header>
+
+    <section id="o-projektu" class="py-24 px-6 md:px-20 bg-white grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div class="max-w-xl">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-8">Koncept bydlení</h2>
+            <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8 text-gray-900 italic">Harmonie moderní architektury <br><span class="font-normal not-italic underline underline-offset-8 decoration-1 decoration-gray-200">v srdci lesů.</span></h3>
+            <p class="text-gray-500 leading-relaxed text-lg font-light mb-10">
+                Rezidence Jevanská nabízí osm exkluzivních bytových jednotek navržených pro ty, kteří hledají klid bez kompromisů. Vysoké stropy, přírodní materiály a bezprostřední blízkost rybniční kaskády.
+            </p>
+            <div class="grid grid-cols-3 gap-8 pt-10 border-t border-gray-100">
+                <div><span class="block text-2xl font-light">08</span><span class="text-[9px] uppercase tracking-widest text-gray-400">Bytů</span></div>
+                <div><span class="block text-2xl font-light">A++</span><span class="text-[9px] uppercase tracking-widest text-gray-400">Energie</span></div>
+                <div><span class="block text-2xl font-light">2026</span><span class="text-[9px] uppercase tracking-widest text-gray-400">Předání</span></div>
+            </div>
+        </div>
+        <div class="aspect-[4/5] bg-gray-50 overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a36?q=80&w=1000" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Vizualizace">
+        </div>
+    </section>
+
+    <section id="nabidka" class="py-24 px-6 md:px-20 bg-gray-50">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <h2 class="text-3xl font-light italic text-gray-900">Volné <span class="font-medium not-italic">jednotky</span></h2>
+                <div class="h-1 w-20 bg-black mt-4"></div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-separate border-spacing-y-2">
+                <thead>
+                    <tr class="text-[10px] uppercase tracking-[0.2em] text-gray-400">
+                        <th class="px-6 py-4 font-medium">Označení</th>
+                        <th class="px-6 py-4 font-medium">Dispozice</th>
+                        <th class="px-6 py-4 font-medium">Plocha</th>
+                        <th class="px-6 py-4 font-medium">Cena</th>
+                        <th class="px-6 py-4 font-right text-right">Stav</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for apt in apartments %}
+                    <tr class="bg-white hover:shadow-xl hover:scale-[1.01] transition-all duration-300 cursor-pointer">
+                        <td class="px-6 py-8 font-medium border-l border-gray-100">{{ apt.title }}</td>
+                        <td class="px-6 py-8 text-gray-500 font-light">{{ apt.disposition }}</td>
+                        <td class="px-6 py-8 text-gray-500 font-light">{{ apt.area }} m²</td>
+                        <td class="px-6 py-8 font-semibold">{{ apt.price|add:0 }} Kč</td>
+                        <td class="px-6 py-8 text-right border-r border-gray-100">
+                            {% if apt.is_available %}
+                            <span class="text-[9px] font-bold uppercase tracking-widest text-white bg-black px-4 py-2">Detail</span>
+                            {% else %}
+                            <span class="text-[9px] font-bold uppercase tracking-widest text-gray-300">Rezervováno</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="py-20 text-center text-gray-400 italic">Aktuálně připravujeme novou etapu prodeje.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="lokalita" class="relative h-[80vh] flex items-center justify-center text-center px-6">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000" class="w-full h-full object-cover grayscale opacity-40" alt="Les">
+        </div>
+        <div class="relative z-10 max-w-3xl">
+            <h2 class="text-4xl md:text-6xl font-light mb-8 italic">Příroda jako <br><span class="font-normal not-italic uppercase tracking-tighter">soused.</span></h2>
+            <p class="text-gray-500 text-lg font-light leading-relaxed mb-12">
+                Jevany jsou synonymem pro klidné a prestižní bydlení. Od vašeho nového prahu vedou cesty přímo do národní přírodní rezervace Voděradské bučiny.
+            </p>
+            <div class="flex flex-wrap justify-center gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
+                <span class="border border-gray-200 px-6 py-3">30 min Praha</span>
+                <span class="border border-gray-200 px-6 py-3">5 min Jezero</span>
+                <span class="border border-gray-200 px-6 py-3">10 min Škola</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt" class="py-24 px-6 md:px-20 bg-white border-t border-gray-100">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+            <div>
+                <div class="text-xl font-light tracking-[0.3em] mb-10 text-gray-900">JEVANSKÁ</div>
+                <p class="text-gray-400 text-sm leading-loose uppercase tracking-widest font-light">
+                    Realitní zastoupení Ladis<br>
+                    Jevanská 124, Praha-východ<br>
+                    jevanska@living.cz
+                </p>
+            </div>
+            <div class="lg:col-span-2">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    <input type="text" placeholder="JMÉNO A PŘÍJMENÍ" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition">
+                    <input type="email" placeholder="EMAIL" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition">
+                    <textarea placeholder="MÁM ZÁJEM O BYT / DOTAZ" class="md:col-span-2 border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition h-32"></textarea>
+                    <button class="bg-black text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition self-start">Odeslat poptávku</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            speed: 2500,
+            effect: 'fade',
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination", clickable: true },
+        });
+    
+    const nav = document.getElementById('main-nav');
+    const logo = document.getElementById('nav-logo');
+    const button = document.getElementById('nav-button');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            // Stav po scrollu (Bílá skleněná lišta)
+            nav.classList.remove('py-8', 'text-white');
+            nav.classList.add('py-4', 'text-black', 'bg-white/80', 'backdrop-blur-md', 'shadow-sm');
+            button.classList.remove('border-white/30');
+            button.classList.add('border-black/10', 'bg-black', 'text-white');
+        } else {
+            // Výchozí stav (Čistě nad fotkou)
+            nav.classList.add('py-8', 'text-white');
+            nav.classList.remove('py-4', 'text-black', 'bg-white/80', 'backdrop-blur-md', 'shadow-sm');
+            button.classList.add('border-white/30');
+            button.classList.remove('border-black/10', 'bg-black', 'text-white');
+        }
+    });
+</script>
+</body>
+</html>
