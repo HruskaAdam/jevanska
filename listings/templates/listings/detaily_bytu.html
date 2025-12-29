@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Byt 2.01 | Rezidence Jevanská</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #1a1a1a; }
+        .spec-label { @apply text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-1; }
+        .spec-value { @apply text-lg font-light text-gray-900; }
+        .floorplan-zoom { cursor: zoom-in; transition: transform 0.3s ease; }
+        .floorplan-zoom:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-white">
+
+    <nav class="fixed w-full z-[100] bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 md:px-12 py-4">
+        <div class="max-w-[1920px] mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl font-light tracking-[0.3em]">JEVANSKÁ</a>
+            <div class="flex items-center space-x-8">
+                <a href="/#nabidka" class="text-[10px] uppercase tracking-widest hover:opacity-50 transition">← Zpět na výběr</a>
+                <a href="#kontakt" class="bg-black text-white px-6 py-2 text-[10px] uppercase tracking-widest font-bold hover:bg-gray-800 transition">Mám zájem</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24">
+        <section class="px-6 md:px-20 py-12 grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div class="lg:col-span-8 space-y-6">
+                <div class="aspect-[16/9] bg-gray-100 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600607687940-4e524cb35a36?q=80&w=2000" alt="Obývací pokoj" class="w-full h-full object-cover">
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="aspect-square bg-gray-100"><img src="https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?q=80&w=1000" class="w-full h-full object-cover" alt="Ložnice"></div>
+                    <div class="aspect-square bg-gray-100"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000" class="w-full h-full object-cover" alt="Koupelna"></div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 lg:sticky lg:top-32 h-fit">
+                <div class="mb-12">
+                    <span class="text-sm font-light text-gray-400">Jednotka</span>
+                    <h1 class="text-6xl font-extralight tracking-tighter mt-2">Byt 2.01</h1>
+                    <div class="flex items-center mt-4 gap-4">
+                        <span class="px-3 py-1 bg-gray-100 text-[10px] uppercase tracking-widest">2. Nadzemní podlaží</span>
+                        <span class="px-3 py-1 bg-green-50 text-green-700 text-[10px] uppercase tracking-widest font-bold">Volný</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-y-8 gap-x-4 border-t border-gray-100 pt-8 mb-12">
+                    <div>
+                        <p class="spec-label">Dispozice</p>
+                        <p class="spec-value">3 + kk</p>
+                    </div>
+                    <div>
+                        <p class="spec-label">Celková plocha</p>
+                        <p class="spec-value">84.2 m²</p>
+                    </div>
+                    <div>
+                        <p class="spec-label">Terasa / Balkon</p>
+                        <p class="spec-value">12.5 m²</p>
+                    </div>
+                    <div>
+                        <p class="spec-label">Orientace</p>
+                        <p class="spec-value">JZ (Les)</p>
+                    </div>
+                    <div>
+                        <p class="spec-label">Sklep</p>
+                        <p class="spec-value">4.0 m²</p>
+                    </div>
+                    <div>
+                        <p class="spec-label">Parkování</p>
+                        <p class="spec-value">2 stání v ceně</p>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-gray-50 space-y-6">
+                    <div class="flex justify-between items-end">
+                        <span class="text-xs uppercase tracking-widest text-gray-400">Cena jednotky</span>
+                        <span class="text-3xl font-light">12 490 000 Kč</span>
+                    </div>
+                    <button class="w-full bg-black text-white py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition">
+                        Rezervovat schůzku
+                    </button>
+                    <a href="#" class="block text-center text-[10px] uppercase tracking-widest text-gray-400 hover:text-black transition">
+                        Stáhnout kartu bytu (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-gray-50 px-6 md:px-20">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-light italic mb-4">Půdorys <span class="not-italic font-normal">jednotky</span></h2>
+                <p class="text-gray-500 font-light">Důmyslně navržený prostor oddělující klidovou zónu ložnic od společenského obývacího pokoje s výhledem do bučin.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto bg-white p-12 shadow-sm border border-gray-100 flex justify-center">
+                <div class="floorplan-zoom w-full max-w-2xl">
+                    <img src="https://via.placeholder.com/800x600/FFFFFF/1a1a1a?text=PUDORYS+BYTU+SVG" alt="Půdorys bytu" class="w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-12 text-center">Standardy vybavení</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                <div class="space-y-4">
+                    <h4 class="text-lg font-medium">Podlahy</h4>
+                    <p class="text-sm text-gray-500 leading-loose font-light">Třívrstvé dubové podlahy v přírodním odstínu, kartáčované, s olejovanou úpravou.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-medium">Okna & Stínění</h4>
+                    <p class="text-sm text-gray-500 leading-loose font-light">Dřevohliníková okna s trojsklem a integrovanými venkovními žaluziemi na dálkové ovládání.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-lg font-medium">Technologie</h4>
+                    <p class="text-sm text-gray-500 leading-loose font-light">Podlahové vytápění, rekuperace vzduchu a příprava pro inteligentní chytrou domácnost Loxone.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="kontakt" class="py-24 px-6 md:px-20 bg-white border-t border-gray-100">
+        </footer>
+
+</body>
+</html>
