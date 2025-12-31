@@ -1,3 +1,4 @@
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="cs" class="scroll-smooth">
 <head>
@@ -20,15 +21,10 @@
         .overlay {
             background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
         }
-        /* Mix-blend-mode pro navigaci, aby byla čitelná na světlém i tmavém */
-        .nav-logo { mix-blend-mode: difference; }
     </style>
 </head>
-<body class="bg-white">
-
-<nav id="main-nav" class="fixed w-full z-[100] transition-all duration-500 px-6 md:px-12 py-8 text-white">
+<body class="bg-white overflow-x-hidden"> <nav id="main-nav" class="fixed w-full z-[100] transition-all duration-500 px-6 md:px-12 py-8 text-white">
     <div class="max-w-[1920px] mx-auto flex justify-between items-center">
-        
         <div id="nav-logo" class="text-xl md:text-2xl font-light tracking-[0.3em] drop-shadow-md">
             JEVANSKÁ
         </div>
@@ -71,7 +67,7 @@
     </header>
 
     <section id="o-projektu" class="py-24 px-6 md:px-20 bg-white grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div class="max-w-xl">
+        <div class="max-w-xl mx-auto lg:mx-0">
             <h2 class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-8">Koncept bydlení</h2>
             <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8 text-gray-900 italic">Harmonie moderní architektury <br><span class="font-normal not-italic underline underline-offset-8 decoration-1 decoration-gray-200">v srdci lesů.</span></h3>
             <p class="text-gray-500 leading-relaxed text-lg font-light mb-10">
@@ -89,46 +85,59 @@
     </section>
 
     <section id="nabidka" class="py-24 px-6 md:px-20 bg-gray-50">
-        <div class="flex justify-between items-end mb-16">
-            <div>
+        <div class="max-w-[1400px] mx-auto">
+            <div class="mb-16">
                 <h2 class="text-3xl font-light italic text-gray-900">Volné <span class="font-medium not-italic">jednotky</span></h2>
                 <div class="h-1 w-20 bg-black mt-4"></div>
             </div>
-        </div>
 
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-separate border-spacing-y-2">
-                <thead>
-                    <tr class="text-[10px] uppercase tracking-[0.2em] text-gray-400">
-                        <th class="px-6 py-4 font-medium">Označení</th>
-                        <th class="px-6 py-4 font-medium">Dispozice</th>
-                        <th class="px-6 py-4 font-medium">Plocha</th>
-                        <th class="px-6 py-4 font-medium">Cena</th>
-                        <th class="px-6 py-4 font-right text-right">Stav</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for apt in apartments %}
-                    <tr class="bg-white hover:shadow-xl hover:scale-[1.01] transition-all duration-300 cursor-pointer">
-                        <td class="px-6 py-8 font-medium border-l border-gray-100">{{ apt.title }}</td>
-                        <td class="px-6 py-8 text-gray-500 font-light">{{ apt.disposition }}</td>
-                        <td class="px-6 py-8 text-gray-500 font-light">{{ apt.area }} m²</td>
-                        <td class="px-6 py-8 font-semibold">{{ apt.price|add:0 }} Kč</td>
-                        <td class="px-6 py-8 text-right border-r border-gray-100">
-                            {% if apt.is_available %}
-                            <span class="text-[9px] font-bold uppercase tracking-widest text-white bg-black px-4 py-2">Detail</span>
-                            {% else %}
-                            <span class="text-[9px] font-bold uppercase tracking-widest text-gray-300">Rezervováno</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="5" class="py-20 text-center text-gray-400 italic">Aktuálně připravujeme novou etapu prodeje.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-separate border-spacing-y-4">
+                    <thead>
+                        <tr class="text-[10px] uppercase tracking-[0.2em] text-gray-400">
+                            <th class="px-6 py-2 font-medium">Byt / Náhled</th>
+                            <th class="px-6 py-2 font-medium">Dispozice</th>
+                            <th class="px-6 py-2 font-medium">Plocha</th>
+                            <th class="px-6 py-2 font-medium">Cena</th>
+                            <th class="px-6 py-2 text-right">Stav</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for apt in apartments %}
+                        <tr data-url="{% url 'detail' apt.pk %}" class="clickable-row bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer group">
+                            <td class="px-6 py-4 border-l border-gray-100 rounded-l-sm">
+                                <div class="flex items-center space-x-6">
+                                    <div class="w-24 h-16 bg-gray-100 overflow-hidden border border-gray-100 flex-shrink-0">
+                                        {% if apt.image %}
+                                            <img src="{{ apt.image.url }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="{{ apt.title }}">
+                                        {% else %}
+                                            <div class="w-full h-full flex items-center justify-center text-[8px] text-gray-300 uppercase">Náhled</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="font-medium text-lg tracking-tight">{{ apt.title }}</div>
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 text-gray-500 font-light">{{ apt.disposition }}</td>
+                            <td class="px-6 py-4 text-gray-500 font-light">{{ apt.area }} m²</td>
+                            <td class="px-6 py-4 font-semibold text-gray-900">{{ apt.price|intcomma }} Kč</td>
+                            
+                            <td class="px-6 py-4 text-right border-r border-gray-100 rounded-r-sm">
+                                {% if apt.is_available %}
+                                    <span class="text-[9px] font-bold uppercase tracking-widest text-white bg-black px-4 py-2 group-hover:bg-gray-800 transition-colors">Detail</span>
+                                {% else %}
+                                    <span class="text-[9px] font-bold uppercase tracking-widest text-gray-300">Rezervováno</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="py-20 text-center text-gray-400 italic">Aktuálně připravujeme novou etapu prodeje.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -142,15 +151,15 @@
                 Jevany jsou synonymem pro klidné a prestižní bydlení. Od vašeho nového prahu vedou cesty přímo do národní přírodní rezervace Voděradské bučiny.
             </p>
             <div class="flex flex-wrap justify-center gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
-                <span class="border border-gray-200 px-6 py-3">30 min Praha</span>
-                <span class="border border-gray-200 px-6 py-3">5 min Jezero</span>
-                <span class="border border-gray-200 px-6 py-3">10 min Škola</span>
+                <span class="border border-gray-200 px-6 py-3 bg-white/50 backdrop-blur-sm">30 min Praha</span>
+                <span class="border border-gray-200 px-6 py-3 bg-white/50 backdrop-blur-sm">5 min Jezero</span>
+                <span class="border border-gray-200 px-6 py-3 bg-white/50 backdrop-blur-sm">10 min Škola</span>
             </div>
         </div>
     </section>
 
     <footer id="kontakt" class="py-24 px-6 md:px-20 bg-white border-t border-gray-100">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-24">
             <div>
                 <div class="text-xl font-light tracking-[0.3em] mb-10 text-gray-900">JEVANSKÁ</div>
                 <p class="text-gray-400 text-sm leading-loose uppercase tracking-widest font-light">
@@ -161,10 +170,10 @@
             </div>
             <div class="lg:col-span-2">
                 <form class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                    <input type="text" placeholder="JMÉNO A PŘÍJMENÍ" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition">
-                    <input type="email" placeholder="EMAIL" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition">
-                    <textarea placeholder="MÁM ZÁJEM O BYT / DOTAZ" class="md:col-span-2 border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition h-32"></textarea>
-                    <button class="bg-black text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition self-start">Odeslat poptávku</button>
+                    <input type="text" placeholder="JMÉNO A PŘÍJMENÍ" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition bg-transparent">
+                    <input type="email" placeholder="EMAIL" class="border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition bg-transparent">
+                    <textarea placeholder="MÁM ZÁJEM O BYT / DOTAZ" class="md:col-span-2 border-b border-gray-200 py-4 text-xs tracking-widest outline-none focus:border-black transition h-32 bg-transparent"></textarea>
+                    <button type="submit" class="bg-black text-white px-12 py-5 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition self-start">Odeslat poptávku</button>
                 </form>
             </div>
         </div>
@@ -181,24 +190,23 @@
         });
     
     const nav = document.getElementById('main-nav');
-    const logo = document.getElementById('nav-logo');
-    const button = document.getElementById('nav-button');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            // Stav po scrollu (Bílá skleněná lišta)
             nav.classList.remove('py-8', 'text-white');
-            nav.classList.add('py-4', 'text-black', 'bg-white/80', 'backdrop-blur-md', 'shadow-sm');
-            button.classList.remove('border-white/30');
-            button.classList.add('border-black/10', 'bg-black', 'text-white');
+            nav.classList.add('py-4', 'text-black', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
         } else {
-            // Výchozí stav (Čistě nad fotkou)
             nav.classList.add('py-8', 'text-white');
-            nav.classList.remove('py-4', 'text-black', 'bg-white/80', 'backdrop-blur-md', 'shadow-sm');
-            button.classList.add('border-white/30');
-            button.classList.remove('border-black/10', 'bg-black', 'text-white');
+            nav.classList.remove('py-4', 'text-black', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
         }
     });
+
+    document.querySelectorAll('.clickable-row').forEach(row => {
+    row.addEventListener('click', () => {
+        window.location.href = row.dataset.url;
+    });
+});
+
 </script>
 </body>
 </html>
